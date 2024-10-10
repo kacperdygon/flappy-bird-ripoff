@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ew00x078h01"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Scorezone.cs" id="1_aswiv"]
+
+[node name="Scorezone" type="Area2D"]
+script = ExtResource("1_aswiv")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

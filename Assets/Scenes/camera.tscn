@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://hm5qreqia02d"]
+
+[ext_resource type="PackedScene" uid="uid://c2ben4clgga06" path="res://Assets/Scenes/killzone.tscn" id="1_75ne8"]
+[ext_resource type="Script" path="res://Assets/Scripts/Camera.cs" id="1_ue1le"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6jhva"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fxiy0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hpr38"]
+
+[node name="Camera" type="Camera2D"]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("1_ue1le")
+
+[node name="Killzone" parent="." instance=ExtResource("1_75ne8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 120)
+shape = SubResource("WorldBoundaryShape2D_6jhva")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-204, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_fxiy0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -120)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_hpr38")

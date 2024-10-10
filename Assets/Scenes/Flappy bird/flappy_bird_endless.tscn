@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://brm0amodl565p"]
+
+[ext_resource type="PackedScene" uid="uid://cc7wx8ibnmnrq" path="res://Assets/Scenes/player.tscn" id="1_pk7oq"]
+[ext_resource type="Script" path="res://Assets/Scripts/FlappyBirdEndless.cs" id="1_ptb0j"]
+[ext_resource type="PackedScene" uid="uid://hm5qreqia02d" path="res://Assets/Scenes/camera.tscn" id="2_x8wuu"]
+[ext_resource type="PackedScene" uid="uid://bqflsi08fuarx" path="res://Assets/Scenes/Flappy bird/flappy_bird_generator.tscn" id="3_agejh"]
+[ext_resource type="Script" path="res://Assets/Scripts/GameManager.cs" id="4_eh81t"]
+
+[node name="FlappyBirdEndless" type="Node2D" node_paths=PackedStringArray("gameManager", "flappyBirdGenerator")]
+script = ExtResource("1_ptb0j")
+gameManager = NodePath("GameManager")
+flappyBirdGenerator = NodePath("FlappyBirdGenerator")
+
+[node name="Player" parent="." instance=ExtResource("1_pk7oq")]
+unique_name_in_owner = true
+
+[node name="Camera" parent="." instance=ExtResource("2_x8wuu")]
+isYStatic = true
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("4_eh81t")
+
+[node name="FlappyBirdGenerator" parent="." instance=ExtResource("3_agejh")]
+position = Vector2(412, 0)
