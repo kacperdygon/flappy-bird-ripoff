@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://brm0amodl565p"]
+[gd_scene load_steps=9 format=3 uid="uid://brm0amodl565p"]
 
 [ext_resource type="PackedScene" uid="uid://cc7wx8ibnmnrq" path="res://Assets/Scenes/player.tscn" id="1_pk7oq"]
 [ext_resource type="Script" path="res://Assets/Scripts/FlappyBirdEndless.cs" id="1_ptb0j"]
 [ext_resource type="PackedScene" uid="uid://hm5qreqia02d" path="res://Assets/Scenes/camera.tscn" id="2_x8wuu"]
 [ext_resource type="PackedScene" uid="uid://bqflsi08fuarx" path="res://Assets/Scenes/Flappy bird/flappy_bird_generator.tscn" id="3_agejh"]
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.cs" id="4_eh81t"]
+[ext_resource type="PackedScene" uid="uid://tr5r8uioou71" path="res://Assets/Scenes/Menu/ChangeSceneButton.tscn" id="6_8pm1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spopq"]
+bg_color = Color(0.423651, 0.423651, 0.423651, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc78g"]
+bg_color = Color(0.423651, 0.423651, 0.423651, 1)
 
 [node name="FlappyBirdEndless" type="Node2D" node_paths=PackedStringArray("gameManager", "flappyBirdGenerator")]
 script = ExtResource("1_ptb0j")
@@ -12,13 +21,65 @@ gameManager = NodePath("GameManager")
 flappyBirdGenerator = NodePath("FlappyBirdGenerator")
 
 [node name="Player" parent="." instance=ExtResource("1_pk7oq")]
-unique_name_in_owner = true
 
-[node name="Camera" parent="." instance=ExtResource("2_x8wuu")]
+[node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_x8wuu")]
 isYStatic = true
+player = NodePath("../Player")
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "gameOverScoreLabel", "gameOverPanel")]
 script = ExtResource("4_eh81t")
+scoreLabel = NodePath("../UI/ScoreLabel")
+gameOverScoreLabel = NodePath("../UI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameOverScoreLabel")
+gameOverPanel = NodePath("../UI/CenterContainer/PanelContainer")
 
 [node name="FlappyBirdGenerator" parent="." instance=ExtResource("3_agejh")]
 position = Vector2(412, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 22.0
+offset_top = 17.0
+offset_right = 158.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 64
+text = "Score: 0
+"
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GameOverInfoLabel" type="Label" parent="UI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "You've lost!"
+horizontal_alignment = 1
+
+[node name="GameOverScoreLabel" type="Label" parent="UI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="ChangeSceneButton" parent="UI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_8pm1r")]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_spopq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_spopq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vc78g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_spopq")
+text = "Return to main menu"
+targetSceneFile = "res://Assets/Scenes/Menu/menu.tscn"

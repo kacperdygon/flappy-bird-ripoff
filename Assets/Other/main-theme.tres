@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b50y43xk0b65k"]
+
+[ext_resource type="FontFile" uid="uid://duoxhqxk65e7g" path="res://Assets/Other/mago3.ttf" id="1_m0h7j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gsfm3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0hu1"]
+
+[resource]
+default_font = ExtResource("1_m0h7j")
+Button/colors/font_color = Color(0.847474, 0.847474, 0.847474, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.650128, 0.650128, 0.650128, 1)
+Button/font_sizes/font_size = 48
+Button/styles/disabled = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/focus = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/hover = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/normal = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/pressed = SubResource("StyleBoxEmpty_gsfm3")
+Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_gsfm3")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_j0hu1")

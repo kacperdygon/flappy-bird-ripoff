@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="latanie przez chmury"
-run/main_scene="res://Assets/Scenes/Flappy bird/flappy_bird_endless.tscn"
+run/main_scene="res://Assets/Scenes/Menu/menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*res://Assets/Scripts/SignalBus.cs"
+Global="*res://Assets/Scripts/Global.cs"
 
 [display]
 
@@ -22,6 +27,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="latanie przez chmury"
+
+[gui]
+
+theme/custom="res://Assets/Other/main-theme.tres"
 
 [input]
 

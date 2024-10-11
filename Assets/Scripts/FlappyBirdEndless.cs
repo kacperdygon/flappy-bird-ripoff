@@ -17,7 +17,7 @@ public partial class FlappyBirdEndless : Node2D
 	private void ConnectScorezoneSignal(Node2D spawnedPipe)
 	{
 		var spawnedPipeScorezone = spawnedPipe.GetNode<Scorezone>("Scorezone");
-		spawnedPipeScorezone.Connect(Scorezone.SignalName.PointScored, Callable.From(gameManager.AddPoint));
+		spawnedPipeScorezone.PointScored += gameManager.AddPoint;
 	}
 
 }

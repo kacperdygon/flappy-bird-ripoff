@@ -4,8 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
 
-	[Signal]
-	public delegate void PlayerDiedEventHandler();
+
 
 	private const float HorizontalMoveSpeed = 200f;
 	private const float HorizontalBrakeSpeed = 500f;
@@ -34,7 +33,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		// animatedSprite2D = GetNode<PlayerSprite>("AnimatedSprite2D");
+		
 	}
 
 
@@ -77,9 +76,11 @@ public partial class Player : CharacterBody2D
 
 		// MOVEMENT Y
 
-		if (Input.IsActionPressed("flyUp"))
-		{
 
+
+		switch (state)
+		{
+			case PlayerState.FlyingUp:
 
 			if (velocity.Y > 0) // faster flying up when facing down
 			{
@@ -90,13 +91,17 @@ public partial class Player : CharacterBody2D
 				velocity.Y = Mathf.Max(velocity.Y - FlyUpGravity * (float)delta, FlyUpSpeedLimit);
 			}
 
-		}
-		else if (Input.IsActionPressed("dive"))
-		{
+			break;
+
+			case PlayerState.Diving:
+		
+		
 			velocity.Y = Mathf.Min(velocity.Y + DiveGravity * (float)delta, DiveSpeedLimit);
-		}
-		else
-		{
+
+			break;
+		
+			case PlayerState.Gliding:
+
 			if (velocity.Y > FallSpeedLimit)
 			{
 				velocity.Y += FallLimiter * (float)delta;
@@ -105,6 +110,8 @@ public partial class Player : CharacterBody2D
 			{
 				velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
 			}
+
+			break;
 			
 		}
 
@@ -122,7 +129,7 @@ public partial class Player : CharacterBody2D
 		else
 		{
 
-			velocity.X = velocity.X * 0.95f;
+			velocity.X *= 0.95f;
 
 		}
 
@@ -136,8 +143,8 @@ public partial class Player : CharacterBody2D
     }
 
 	public void Die()
-	{	
-		Console.WriteLine("you're dead");
+	{		
+		Global.signalBus.EmitSignal(SignalBus.SignalName.PlayerDied);
 	}
 
 	public void AddHorizontalMovement(float movement)

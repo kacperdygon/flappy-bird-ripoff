@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://tr5r8uioou71"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/ChangeSceneButton.cs" id="1_j51s6"]
+
+[node name="ChangeSceneButton" type="Button"]
+offset_right = 224.0
+offset_bottom = 81.0
+text = "Placeholder"
+script = ExtResource("1_j51s6")
+
+[connection signal="button_up" from="." to="." method="_OnButtonUp"]

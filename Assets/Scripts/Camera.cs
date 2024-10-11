@@ -13,7 +13,7 @@ public partial class Camera : Camera2D
 	[Export] 
 	bool isYStatic;
 
-	Player player;
+	[Export] Player player;
 
 	float playerXOffset = 75f;
 	public float PlayerXOffset { get {return playerXOffset;}}
@@ -21,7 +21,7 @@ public partial class Camera : Camera2D
 
 	public override void _Ready()
 	{
-		player = GetNode<Player>("%Player");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

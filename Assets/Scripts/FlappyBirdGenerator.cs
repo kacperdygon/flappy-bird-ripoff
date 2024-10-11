@@ -12,7 +12,7 @@ public partial class FlappyBirdGenerator : Node2D
 	int pipesSpawned = 0;
 	Vector2 startPosition;
 
-	PackedScene pipeSet;
+	PackedScene pipeSetScene;
 
 	Random randomNumber = new();
 	Camera camera;
@@ -22,7 +22,7 @@ public partial class FlappyBirdGenerator : Node2D
 		
 		startPosition = GlobalPosition;
 		camera = GetViewport().GetCamera2D() as Camera;
-		pipeSet = GD.Load<PackedScene>("res://Assets/Scenes/Flappy bird/pipe_set.tscn");
+		pipeSetScene = GD.Load<PackedScene>("res://Assets/Scenes/Flappy bird/pipe_set.tscn");
 		
 	}
 
@@ -44,7 +44,7 @@ public partial class FlappyBirdGenerator : Node2D
 		Vector2 position;
 		position.Y = randomNumber.Next((int)GlobalPosition.Y - 80, (int)GlobalPosition.Y + 81);
 		position.X = camera.Position.X;
-		var currentPipeSet = pipeSet.Instantiate() as Node2D;
+		var currentPipeSet = pipeSetScene.Instantiate() as Node2D;
 		currentPipeSet.Position = position;
 
 
