@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://tr5r8uioou71"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/ChangeSceneButton.cs" id="1_j51s6"]
+[ext_resource type="Script" path="res://Assets/UI/Buttons/ChangeSceneButton.cs" id="1_j51s6"]
 
 [node name="ChangeSceneButton" type="Button"]
 offset_right = 224.0

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqow4ebh6eynn"
-path="res://.godot/imported/green-pipe-up.png-567d2de5e17209baaead1d80486da961.ctex"
+path="res://.godot/imported/green-pipe-up.png-ea88d403d8d87b9b735d27873e13fc10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/FlappyPipes/green-pipe-up.png"
-dest_files=["res://.godot/imported/green-pipe-up.png-567d2de5e17209baaead1d80486da961.ctex"]
+source_file="res://Assets/Scenes/Flappy bird/Pipe sprites/green-pipe-up.png"
+dest_files=["res://.godot/imported/green-pipe-up.png-ea88d403d8d87b9b735d27873e13fc10.ctex"]
 
 [params]
 

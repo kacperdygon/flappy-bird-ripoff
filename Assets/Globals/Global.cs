@@ -5,4 +5,5 @@ using System;
 public partial class Global : Node
 {
     public static SignalBus signalBus = new();
+
 }

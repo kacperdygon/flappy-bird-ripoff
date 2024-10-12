@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="latanie przez chmury"
-run/main_scene="res://Assets/Scenes/Menu/menu.tscn"
+run/main_scene="res://Assets/UI/Menu/menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://Assets/Scripts/SignalBus.cs"
-Global="*res://Assets/Scripts/Global.cs"
+SignalBus="*res://Assets/Globals/SignalBus.cs"
+Global="*res://Assets/Globals/Global.cs"
+SceneManager="*res://Assets/Globals/SceneManager.cs"
+DebugHelp="*res://Assets/Globals/DebugHelp.cs"
 
 [display]
 

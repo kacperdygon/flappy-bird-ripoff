@@ -13,7 +13,7 @@ public partial class Player : CharacterBody2D
 
 	private const float FlyUpGravity = 330f;
 	private const float FlyUpSpeedLimit = -150f;
-	
+
 	private const float DiveGravity = 500f;
 	private const float DiveSpeedLimit = 250f;
 
@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
 	private const float BrakingPower = 2f;
 	private const float HorizontalDiveSpeedModifier = 1.3f;
 
-	
+
 
 	PlayerState state;
 	private float generalSpeedModifier;
@@ -33,7 +33,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		
+
 	}
 
 
@@ -51,11 +51,11 @@ public partial class Player : CharacterBody2D
 
 	}
 
-    private void GetState()
-    {
-        if (Input.IsActionPressed("flyUp"))
+	private void GetState()
+	{
+		if (Input.IsActionPressed("flyUp"))
 		{
-			state = PlayerState.FlyingUp; 
+			state = PlayerState.FlyingUp;
 		}
 		else if (Input.IsActionPressed("dive"))
 		{
@@ -66,10 +66,10 @@ public partial class Player : CharacterBody2D
 			state = PlayerState.Gliding;
 		}
 
-    }
+	}
 
 
-    private void HandleMovement(double delta)
+	private void HandleMovement(double delta)
 	{
 
 		Vector2 velocity = Velocity;
@@ -82,37 +82,37 @@ public partial class Player : CharacterBody2D
 		{
 			case PlayerState.FlyingUp:
 
-			if (velocity.Y > 0) // faster flying up when facing down
-			{
-				velocity.Y -= FlyUpGravity * BrakingPower * (float)delta;
-			}
-			else
-			{
-				velocity.Y = Mathf.Max(velocity.Y - FlyUpGravity * (float)delta, FlyUpSpeedLimit);
-			}
+				if (velocity.Y > 0) // faster flying up when facing down
+				{
+					velocity.Y -= FlyUpGravity * BrakingPower * (float)delta;
+				}
+				else
+				{
+					velocity.Y = Mathf.Max(velocity.Y - FlyUpGravity * (float)delta, FlyUpSpeedLimit);
+				}
 
-			break;
+				break;
 
 			case PlayerState.Diving:
-		
-		
-			velocity.Y = Mathf.Min(velocity.Y + DiveGravity * (float)delta, DiveSpeedLimit);
 
-			break;
-		
+
+				velocity.Y = Mathf.Min(velocity.Y + DiveGravity * (float)delta, DiveSpeedLimit);
+
+				break;
+
 			case PlayerState.Gliding:
 
-			if (velocity.Y > FallSpeedLimit)
-			{
-				velocity.Y += FallLimiter * (float)delta;
-			}
-			else
-			{
-				velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
-			}
+				if (velocity.Y > FallSpeedLimit)
+				{
+					velocity.Y += FallLimiter * (float)delta;
+				}
+				else
+				{
+					velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
+				}
 
-			break;
-			
+				break;
+
 		}
 
 		// MOVEMENT X
@@ -138,12 +138,12 @@ public partial class Player : CharacterBody2D
 	}
 
 	private void UpdateSpeedModifiers()
-    {
+	{
 		if (state == PlayerState.Diving) generalSpeedModifier *= HorizontalDiveSpeedModifier;
-    }
+	}
 
 	public void Die()
-	{		
+	{
 		Global.signalBus.EmitSignal(SignalBus.SignalName.PlayerDied);
 	}
 

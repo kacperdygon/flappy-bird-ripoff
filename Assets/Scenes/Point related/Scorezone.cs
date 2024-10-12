@@ -11,11 +11,13 @@ public partial class Scorezone : Area2D
 
 	public void OnBodyEntered(Player player)
 	{
-		if(!alreadyEntered) {
+		if (!alreadyEntered)
+		{
 			EmitSignal(SignalName.PointScored);
 			alreadyEntered = true;
+			GetTree().CreateTimer(3).Timeout += QueueFree;
 		}
-		
+
 	}
-	
+
 }

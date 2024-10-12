@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6t0hknywnkqx"
-path="res://.godot/imported/TileStyle1.png-10546d71e9a38876be50b552cbaddca8.ctex"
+uid="uid://o87qxqac6qhi"
+path="res://.godot/imported/Bird Spritesheet.png-e41b287d8f5b4b29fbc146c073b70964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/FlappyPipes/TileStyle1.png"
-dest_files=["res://.godot/imported/TileStyle1.png-10546d71e9a38876be50b552cbaddca8.ctex"]
+source_file="res://Assets/Entities/Player/Bird Spritesheet.png"
+dest_files=["res://.godot/imported/Bird Spritesheet.png-e41b287d8f5b4b29fbc146c073b70964.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://hm5qreqia02d"]
 
-[ext_resource type="PackedScene" uid="uid://c2ben4clgga06" path="res://Assets/Scenes/killzone.tscn" id="1_75ne8"]
-[ext_resource type="Script" path="res://Assets/Scripts/Camera.cs" id="1_ue1le"]
+[ext_resource type="PackedScene" uid="uid://c2ben4clgga06" path="res://Assets/Scenes/Point related/killzone.tscn" id="1_75ne8"]
+[ext_resource type="Script" path="res://Assets/Entities/Camera/Camera.cs" id="1_ue1le"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6jhva"]
 

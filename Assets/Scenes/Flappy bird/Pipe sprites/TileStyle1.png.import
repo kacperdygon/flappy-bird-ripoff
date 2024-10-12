@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ttnkfg5pejg"
-path="res://.godot/imported/PipeStyle1.png-e55f965f7b336cd67c6d28e1b7702a10.ctex"
+uid="uid://6t0hknywnkqx"
+path="res://.godot/imported/TileStyle1.png-9c07f19de0ce5336552e6fe143b65458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/FlappyPipes/PipeStyle1.png"
-dest_files=["res://.godot/imported/PipeStyle1.png-e55f965f7b336cd67c6d28e1b7702a10.ctex"]
+source_file="res://Assets/Scenes/Flappy bird/Pipe sprites/TileStyle1.png"
+dest_files=["res://.godot/imported/TileStyle1.png-9c07f19de0ce5336552e6fe143b65458.ctex"]
 
 [params]
 

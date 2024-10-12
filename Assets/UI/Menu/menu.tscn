@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dahl6rybaxngh"]
 
-[ext_resource type="Texture2D" uid="uid://cywkclijen44n" path="res://Assets/Sprites/menu-background.png" id="1_d5yaw"]
-[ext_resource type="PackedScene" uid="uid://tr5r8uioou71" path="res://Assets/Scenes/Menu/ChangeSceneButton.tscn" id="2_xg3gp"]
+[ext_resource type="Texture2D" uid="uid://cywkclijen44n" path="res://Assets/UI/Menu/menu-background.png" id="1_d5yaw"]
+[ext_resource type="PackedScene" uid="uid://tr5r8uioou71" path="res://Assets/UI/Buttons/ChangeSceneButton.tscn" id="2_xg3gp"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -44,7 +44,7 @@ offset_bottom = 328.0
 [node name="ChangeSceneButton" parent="HFlowContainer" instance=ExtResource("2_xg3gp")]
 layout_mode = 2
 text = "Flappy bird endless"
-targetSceneFile = "res://Assets/Scenes/Flappy bird/flappy_bird_endless.tscn"
+targetScenePath = "res://Assets/Scenes/Flappy bird/flappy_bird_endless.tscn"
 
 [node name="ChangeSceneButton2" parent="HFlowContainer" instance=ExtResource("2_xg3gp")]
 layout_mode = 2
