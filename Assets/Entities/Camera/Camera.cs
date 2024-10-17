@@ -1,36 +1,46 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 
 
 public partial class Camera : Camera2D
 {
-	// Called when the node enters the scene tree for the first time.
 
-	const float CameraMovementX = 150f;
-
-
-	[Export]
-	bool isYStatic;
+	[Export] Vector2 cameraMovement = new(150f, 0);
 
 	[Export] Player player;
 
 	float playerXOffset = 75f;
 	public float PlayerXOffset { get { return playerXOffset; } }
 
+	public override void _Ready()
+	{
+		base._Ready();
+	}
 
-
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
 
-		Vector2 position = Position;
-		position.X = MathF.Max(Position.X + CameraMovementX * (float)delta, player.Position.X + playerXOffset);
-		if (!isYStatic) position.Y = player.Position.Y;
-		Position = position;
+		MoveCamera(delta);
+		if (!player.IsDead()) MovePlayer(delta);
 
-		player.AddHorizontalMovement(CameraMovementX * (float)delta);
+
+	}
+
+	public void MoveCamera(double delta)
+	{
+		if (!player.IsDead())
+		{
+			Vector2 position = Position;
+			position.X = MathF.Max(Position.X + cameraMovement.X * (float)delta, player.Position.X + playerXOffset);
+			Position = position;
+		}
+	}
+
+	public void MovePlayer(double delta)
+	{
+		player.SetAdditionalMovement(cameraMovement * (float)delta);
 
 	}
 

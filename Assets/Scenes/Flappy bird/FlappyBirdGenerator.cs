@@ -16,24 +16,24 @@ public partial class FlappyBirdGenerator : Node2D
 
 	Random randomNumber = new();
 	Camera camera;
-	
+
 	public override void _Ready()
 	{
-		
+
 		startPosition = GlobalPosition;
 		camera = GetViewport().GetCamera2D() as Camera;
 		pipeSetScene = GD.Load<PackedScene>("res://Assets/Scenes/Flappy bird/pipe_set.tscn");
-		
+
 	}
 
 	public override void _Process(double delta)
 	{
-		if ((camera.Position.X - camera.PlayerXOffset) / PipeInterval > pipesSpawned) 
+		if ((camera.Position.X - camera.PlayerXOffset) / PipeInterval > pipesSpawned)
 		{
 			SpawnPipe();
 			if (GetChildCount() == 5) GetChild(0).QueueFree();
 		}
-		
+
 	}
 
 
@@ -50,9 +50,9 @@ public partial class FlappyBirdGenerator : Node2D
 
 		AddChild(currentPipeSet);
 		EmitSignal(SignalName.PipeSpawned, currentPipeSet);
-		
-		
-	
+
+
+
 	}
 
 

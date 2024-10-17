@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cc7wx8ibnmnrq"]
+[gd_scene load_steps=17 format=3 uid="uid://cc7wx8ibnmnrq"]
 
 [ext_resource type="Texture2D" uid="uid://o87qxqac6qhi" path="res://Assets/Entities/Player/Bird Spritesheet.png" id="1_1inpw"]
 [ext_resource type="Script" path="res://Assets/Entities/Player/Player.cs" id="1_iysxu"]
 [ext_resource type="Script" path="res://Assets/Entities/Player/PlayerSprite.cs" id="3_c0eca"]
+[ext_resource type="PackedScene" uid="uid://dn0ypxbiwjl0l" path="res://Assets/Entities/Components/MoveComponent/moveComponent.tscn" id="4_yero2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjpkt"]
 radius = 1.0
@@ -96,8 +97,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite2D")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "animatedSprite2D")]
 script = ExtResource("1_iysxu")
+moveComponent = NodePath("MoveComponent")
 animatedSprite2D = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -110,3 +112,5 @@ animation = &"dive"
 autoplay = "glide"
 flip_h = true
 script = ExtResource("3_c0eca")
+
+[node name="MoveComponent" parent="." instance=ExtResource("4_yero2")]

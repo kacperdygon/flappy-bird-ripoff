@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brm0amodl565p"]
+[gd_scene load_steps=10 format=3 uid="uid://brm0amodl565p"]
 
 [ext_resource type="PackedScene" uid="uid://cc7wx8ibnmnrq" path="res://Assets/Entities/Player/player.tscn" id="1_pk7oq"]
 [ext_resource type="Script" path="res://Assets/Scenes/Flappy bird/FlappyBirdEndless.cs" id="1_ptb0j"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqflsi08fuarx" path="res://Assets/Scenes/Flappy bird/flappy_bird_generator.tscn" id="3_agejh"]
 [ext_resource type="Script" path="res://Assets/Scenes/Point related/GameManager.cs" id="4_eh81t"]
 [ext_resource type="PackedScene" uid="uid://tr5r8uioou71" path="res://Assets/UI/Buttons/ChangeSceneButton.tscn" id="6_8pm1r"]
+[ext_resource type="Texture2D" uid="uid://bcokfmye4n0wr" path="res://Assets/Scenes/Flappy bird/Clouds0.png" id="7_q3j5e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spopq"]
 bg_color = Color(0.423651, 0.423651, 0.423651, 1)
@@ -23,7 +24,6 @@ flappyBirdGenerator = NodePath("FlappyBirdGenerator")
 [node name="Player" parent="." instance=ExtResource("1_pk7oq")]
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_x8wuu")]
-isYStatic = true
 player = NodePath("../Player")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "gameOverScoreLabel", "gameOverPanel")]
@@ -84,3 +84,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vc78g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_spopq")
 text = "Return to main menu"
 targetScenePath = "res://Assets/UI/Menu/menu.tscn"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("7_q3j5e")
+centered = false
+offset = Vector2(0, -113.625)

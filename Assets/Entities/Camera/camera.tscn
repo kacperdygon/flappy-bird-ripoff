@@ -23,7 +23,7 @@ position = Vector2(0, 120)
 shape = SubResource("WorldBoundaryShape2D_6jhva")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-204, 0)
+position = Vector2(-236, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_fxiy0")
 
