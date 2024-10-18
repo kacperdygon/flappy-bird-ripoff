@@ -22,128 +22,128 @@ public partial class MoveComponent : Node2D
 	private const float BrakingPower = 2f;
 
 	Vector2 additionalMovement;
+	CharacterBody2D parent;
 
-	public void HandlePlayerMovement(Player player)
+	public override void _Ready()
 	{
-
-		Vector2 velocity = player.Velocity;
-		double delta = GetTree().Root.GetPhysicsProcessDeltaTime();
-
-		switch (player.GetState())
-		{
-			case PlayerState.FlyingUp:
-
-				velocity = HandleFlyingUp(delta, velocity);
-				break;
-
-			case PlayerState.Diving:
-
-				velocity = HandleDiving(delta, velocity);
-				break;
-
-			case PlayerState.Gliding:
-
-				velocity = HandleGliding(delta, velocity);
-				break;
-			case PlayerState.Dead:
-
-				velocity = HandleDead(delta, velocity);
-				break;
-
-		}
-
-		if (!player.IsDead()) velocity = HandleHorizontalMovement(delta, velocity);
-
-		player.Velocity = velocity;
-
-		player.MoveAndSlide();
-
-		if (!player.IsDead()) ApplyAdditionalMovement(player);
-
+		parent = Owner as CharacterBody2D;
 	}
 
-	private Vector2 HandleGliding(double delta, Vector2 velocity)
-	{
 
-		if (velocity.Y > FallSpeedLimit)
-		{
-			velocity.Y += FallLimiter * (float)delta;
-		}
-		else
-		{
-			velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
-		}
+	// public void HandleMovement()
+	// {
 
-		return velocity;
-	}
+	// 	Vector2 velocity = parent.Velocity;
+	// 	double delta = GetTree().Root.GetPhysicsProcessDeltaTime();
 
-	private Vector2 HandleDiving(double delta, Vector2 velocity)
-	{
+	// 	switch (parent.State)
+	// 	{
+	// 		case State.FlyingUp:
 
-		velocity.Y = Mathf.Min(velocity.Y + DiveGravity * (float)delta, DiveSpeedLimit);
+	// 			velocity = HandleFlyingUp(delta, velocity);
+	// 			break;
 
-		return velocity;
-	}
+	// 		case State.Diving:
 
-	private Vector2 HandleFlyingUp(double delta, Vector2 velocity)
-	{
+	// 			velocity = HandleDiving(delta, velocity);
+	// 			break;
 
-		if (velocity.Y > 0) // faster flying up when facing down
-		{
-			velocity.Y -= FlyUpGravity * BrakingPower * (float)delta;
-		}
-		else
-		{
-			velocity.Y = Mathf.Max(velocity.Y - FlyUpGravity * (float)delta, FlyUpSpeedLimit);
-		}
+	// 		case State.Gliding:
 
-		return velocity;
-	}
+	// 			velocity = HandleGliding(delta, velocity);
+	// 			break;
+	// 		case State.Dead:
 
-	private Vector2 HandleDead(double delta, Vector2 velocity)
-	{
+	// 			velocity = HandleDead(delta, velocity);
+	// 			break;
 
-		velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
+	// 	}
 
-		velocity.X *= 0.99f;
+	// 	if (!parent.IsDead()) velocity = HandleHorizontalMovement(delta, velocity);
 
-		return velocity;
-	}
+	// 	parent.Velocity = velocity;
 
-	private Vector2 HandleHorizontalMovement(double delta, Vector2 velocity)
-	{
-		float direction = Input.GetAxis("moveLeft", "moveRight");
-		if (direction != 0)
-		{
-			if ((direction < 0 && velocity.X > 0) || (direction > 0 && velocity.X < 0)) velocity.X += HorizontalBrakeSpeed * direction * (float)delta;
-			else velocity.X = Mathf.Clamp(velocity.X + HorizontalMoveSpeed * (float)delta * direction, -HorizontalMoveSpeedLimit, HorizontalMoveSpeedLimit);
+	// 	parent.MoveAndSlide();
 
-		}
-		else
-		{
+	// 	if (!parent.IsDead()) ApplyAdditionalMovement(parent);
 
-			velocity.X *= 0.95f;
+	// }
 
-		}
+	// private void HandleGliding(double delta, Vector2 velocity)
+	// {
 
-		return velocity;
-	}
+	// 	if (velocity.Y > FallSpeedLimit)
+	// 	{
+	// 		velocity.Y += FallLimiter * (float)delta;
+	// 	}
+	// 	else
+	// 	{
+	// 		velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
+	// 	}
 
-	public void AddDeathJump(Player player)
-	{
-		Vector2 velocity = player.Velocity;
-		velocity.Y = -150;
-		player.Velocity = velocity;
-	}
+	// 	return velocity;
+	// }
+
+	// private void HandleDiving(double delta, Vector2 velocity)
+	// {
+
+	// 	velocity.Y = Mathf.Min(velocity.Y + DiveGravity * (float)delta, DiveSpeedLimit);
+
+	// 	return velocity;
+	// }
+
+	// private void HandleFlyingUp(double delta, Vector2 velocity)
+	// {
+
+	// 	if (velocity.Y > 0) // faster flying up when facing down
+	// 	{
+	// 		velocity.Y -= FlyUpGravity * BrakingPower * (float)delta;
+	// 	}
+	// 	else
+	// 	{
+	// 		velocity.Y = Mathf.Max(velocity.Y - FlyUpGravity * (float)delta, FlyUpSpeedLimit);
+	// 	}
+
+	// 	return velocity;
+	// }
+
+	// private void HandleDead(double delta, Vector2 velocity)
+	// {
+
+	// 	velocity.Y = MathF.Min(velocity.Y += FallGravity * (float)delta, FallSpeedLimit);
+
+	// 	velocity.X *= 0.99f;
+
+	// 	parent.Velocity = velocity;
+	// }
+
+	// private Vector2 HandleHorizontalMovement(double delta, Vector2 velocity)
+	// {
+	// 	float direction = Input.GetAxis("moveLeft", "moveRight");
+	// 	if (direction != 0)
+	// 	{
+	// 		if (direction * velocity.X < 0) velocity.X += HorizontalBrakeSpeed * direction * (float)delta;
+	// 		else velocity.X = Mathf.Clamp(velocity.X + HorizontalMoveSpeed * (float)delta * direction, -HorizontalMoveSpeedLimit, HorizontalMoveSpeedLimit);
+
+	// 	}
+	// 	else
+	// 	{
+
+	// 		velocity.X *= 0.95f;
+
+	// 	}
+
+	// 	return velocity;
+	// }
 
 	public void SetAdditionalMovement(Vector2 passedAdditionalMovement)
 	{
 		additionalMovement = passedAdditionalMovement;
 	}
 
-	public void ApplyAdditionalMovement(Player player)
+	public void ApplyAdditionalMovement(Player parent)
 	{
-		player.Position += additionalMovement;
+		parent.Position += additionalMovement;
 	}
 
 

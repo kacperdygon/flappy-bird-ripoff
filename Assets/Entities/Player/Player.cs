@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D
 
 	[Export] MoveComponent moveComponent;
 	[Export] PlayerSprite animatedSprite2D;
-	PlayerState state;
+	[Export] StateMachine stateMachine;
 
 
 	public override void _PhysicsProcess(double delta)
@@ -16,10 +16,9 @@ public partial class Player : CharacterBody2D
 		{
 			SwitchState();
 		}
-		moveComponent.HandlePlayerMovement(this);
 		Rotate();
 
-		animatedSprite2D.UpdateAnimations(state);
+		animatedSprite2D.UpdateAnimations(stateMachine.StateName);
 
 	}
 
@@ -27,21 +26,21 @@ public partial class Player : CharacterBody2D
 	{
 		if (Input.IsActionPressed("flyUp"))
 		{
-			state = PlayerState.FlyingUp;
+			// state = State.FlyingUp;
 		}
 		else if (Input.IsActionPressed("dive"))
 		{
-			state = PlayerState.Diving;
+			// state = State.Diving;
 		}
 		else
 		{
-			state = PlayerState.Gliding;
+			// state = State.Gliding;
 		}
 	}
 
-	public PlayerState GetState()
+	public string GetState()
 	{
-		return state;
+		return stateMachine.StateName;
 	}
 
 	public void Die()
@@ -49,15 +48,13 @@ public partial class Player : CharacterBody2D
 		if (!IsDead())
 		{
 			Global.signalBus.EmitSignal(SignalBus.SignalName.PlayerDied);
-			state = PlayerState.Dead;
-			moveComponent.AddDeathJump(this);
 		}
 
 	}
 
 	public bool IsDead()
 	{
-		return state == PlayerState.Dead;
+		return stateMachine.StateName == PlayerState.DEAD;
 	}
 
 	public void SetAdditionalMovement(Vector2 additionalMovement)
@@ -73,10 +70,10 @@ public partial class Player : CharacterBody2D
 
 }
 
-public enum PlayerState
-{
-	FlyingUp,
-	Diving,
-	Gliding,
-	Dead
-}
+// public enum State
+// {
+// 	FlyingUp,
+// 	Diving,
+// 	Gliding,
+// 	Dead
+// }

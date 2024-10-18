@@ -114,3 +114,13 @@ flip_h = true
 script = ExtResource("3_c0eca")
 
 [node name="MoveComponent" parent="." instance=ExtResource("4_yero2")]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="FlyingUp" type="Node" parent="StateMachine"]
+
+[node name="Diving" type="Node" parent="StateMachine"]
+
+[node name="Gliding" type="Node" parent="StateMachine"]
+
+[node name="Dead" type="Node" parent="StateMachine"]

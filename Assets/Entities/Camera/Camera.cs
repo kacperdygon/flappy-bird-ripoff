@@ -23,14 +23,14 @@ public partial class Camera : Camera2D
 	{
 
 		MoveCamera(delta);
-		if (!player.IsDead()) MovePlayer(delta);
+		// if (!player.IsDead()) MovePlayer(delta);
 
 
 	}
 
 	public void MoveCamera(double delta)
 	{
-		if (!player.IsDead())
+		// if (!player.IsDead())
 		{
 			Vector2 position = Position;
 			position.X = MathF.Max(Position.X + cameraMovement.X * (float)delta, player.Position.X + playerXOffset);

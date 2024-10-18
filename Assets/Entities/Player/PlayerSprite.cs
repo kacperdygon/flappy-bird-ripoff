@@ -21,19 +21,29 @@ public partial class PlayerSprite : AnimatedSprite2D
 
 
 
-	public void UpdateAnimations(PlayerState state)
+	public void UpdateAnimations(string state)
 	{
-		if (state == PlayerState.FlyingUp)
+		switch (state)
 		{
-			Play("fly");
-		}
-		else if (state == PlayerState.Diving)
-		{
-			Play("dive");
-		}
-		else if (state == PlayerState.Gliding)
-		{
-			Play("glide");
+			case PlayerState.FLYINGUP:
+
+				Play("fly");
+
+				break;
+
+			case PlayerState.DIVING:
+
+				Play("dive");
+
+				break;
+
+			case PlayerState.GLIDING:
+
+				Play("glide");
+
+				break;
+
+
 		}
 
 	}
