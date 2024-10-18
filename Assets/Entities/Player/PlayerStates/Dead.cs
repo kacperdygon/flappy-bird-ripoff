@@ -4,10 +4,6 @@ using System;
 public partial class Dead : State
 {
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
 
     public override void PhysicsUpdate(double delta)
     {
@@ -20,9 +16,6 @@ public partial class Dead : State
 
         parent.Velocity = velocity;
 
-        parent.Velocity = velocity;
-
-        parent.MoveAndSlide();
 
 
     }

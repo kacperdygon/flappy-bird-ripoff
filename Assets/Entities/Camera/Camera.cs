@@ -14,23 +14,18 @@ public partial class Camera : Camera2D
 	float playerXOffset = 75f;
 	public float PlayerXOffset { get { return playerXOffset; } }
 
-	public override void _Ready()
-	{
-		base._Ready();
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 
 		MoveCamera(delta);
-		// if (!player.IsDead()) MovePlayer(delta);
+		if (!player.IsDead()) MovePlayer(delta);
 
 
 	}
 
 	public void MoveCamera(double delta)
 	{
-		// if (!player.IsDead())
 		{
 			Vector2 position = Position;
 			position.X = MathF.Max(Position.X + cameraMovement.X * (float)delta, player.Position.X + playerXOffset);
@@ -40,7 +35,7 @@ public partial class Camera : Camera2D
 
 	public void MovePlayer(double delta)
 	{
-		player.SetAdditionalMovement(cameraMovement * (float)delta);
+		player.AddAdditionalMovement(cameraMovement * (float)delta);
 
 	}
 

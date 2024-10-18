@@ -22,7 +22,6 @@ public partial class Gliding : State
 
         parent.Velocity = velocity;
 
-        parent.MoveAndSlide();
 
     }
 
@@ -33,7 +32,14 @@ public partial class Gliding : State
 
     public override void HandleInput()
     {
-
+        if (Input.IsActionPressed("flyUp"))
+        {
+            ChangeState(PlayerState.FLYINGUP);
+        }
+        else if (Input.IsActionPressed("dive"))
+        {
+            ChangeState(PlayerState.DIVING);
+        }
     }
 
 

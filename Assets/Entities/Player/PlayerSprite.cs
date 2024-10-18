@@ -7,7 +7,7 @@ public partial class PlayerSprite : AnimatedSprite2D
 
 	public void UpdateAnimations(string state)
 	{
-		GD.Print("Animations updated!");
+		// GD.Print("Animations updated!");
 		switch (state)
 		{
 			case PlayerState.FLYINGUP:
@@ -27,6 +27,13 @@ public partial class PlayerSprite : AnimatedSprite2D
 				Play("glide");
 
 				break;
+
+			default:
+				GD.Print("state not recognized");
+				GD.Print(state);
+
+				break;
+
 
 
 		}

@@ -1,10 +1,10 @@
 using Godot;
 using System;
+using System.Reflection.Metadata;
 
 public partial class Player : CharacterBody2D
 {
 
-	[Export] MoveComponent moveComponent;
 	[Export] PlayerSprite animatedSprite2D;
 	[Export] StateMachine stateMachine;
 
@@ -17,7 +17,11 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 
+
+		if (!IsDead()) HandleHorizontalMovement(delta);
 		Rotate();
+
+		MoveAndSlide();
 
 	}
 
@@ -31,7 +35,32 @@ public partial class Player : CharacterBody2D
 		if (!IsDead())
 		{
 			Global.signalBus.EmitSignal(SignalBus.SignalName.PlayerDied);
+			stateMachine.ChangeState(PlayerState.DEAD);
 		}
+
+	}
+
+	private void HandleHorizontalMovement(double delta)
+	{
+
+		Vector2 velocity = Velocity;
+
+		float direction = Input.GetAxis("moveLeft", "moveRight");
+		if (direction != 0)
+		{
+			if (direction * velocity.X < 0) velocity.X += PlayerStats.HorizontalBrakeSpeed * direction * (float)delta;
+			else velocity.X = Mathf.Clamp(velocity.X + PlayerStats.HorizontalMoveSpeed * (float)delta * direction, -PlayerStats.HorizontalMoveSpeedLimit, PlayerStats.HorizontalMoveSpeedLimit);
+
+		}
+		else
+		{
+
+			velocity.X *= 0.95f;
+
+		}
+
+		Velocity = velocity;
+
 
 	}
 
@@ -40,7 +69,7 @@ public partial class Player : CharacterBody2D
 		return stateMachine.StateName == PlayerState.DEAD;
 	}
 
-	public void SetAdditionalMovement(Vector2 additionalMovement)
+	public void AddAdditionalMovement(Vector2 additionalMovement)
 	{
 		Position += additionalMovement;
 	}

@@ -4,10 +4,6 @@ using System;
 public partial class FlyingUp : State
 {
 
-    public override void _Ready()
-    {
-
-    }
 
     public override void PhysicsUpdate(double delta)
     {
@@ -25,7 +21,7 @@ public partial class FlyingUp : State
 
         parent.Velocity = velocity;
 
-        parent.MoveAndSlide();
+
 
     }
 
@@ -36,6 +32,15 @@ public partial class FlyingUp : State
 
     public override void HandleInput()
     {
+
+        if (Input.IsActionPressed("dive"))
+        {
+            ChangeState(PlayerState.DIVING);
+        }
+        else if (Input.IsActionJustReleased("flyUp"))
+        {
+            ChangeState(PlayerState.GLIDING);
+        }
 
     }
 
