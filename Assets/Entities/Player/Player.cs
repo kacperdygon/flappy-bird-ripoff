@@ -9,33 +9,16 @@ public partial class Player : CharacterBody2D
 	[Export] StateMachine stateMachine;
 
 
+	public override void _Ready()
+	{
+		stateMachine.StateChanged += animatedSprite2D.UpdateAnimations;
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 
-		if (!IsDead())
-		{
-			SwitchState();
-		}
 		Rotate();
 
-		animatedSprite2D.UpdateAnimations(stateMachine.StateName);
-
-	}
-
-	private void SwitchState()
-	{
-		if (Input.IsActionPressed("flyUp"))
-		{
-			// state = State.FlyingUp;
-		}
-		else if (Input.IsActionPressed("dive"))
-		{
-			// state = State.Diving;
-		}
-		else
-		{
-			// state = State.Gliding;
-		}
 	}
 
 	public string GetState()
@@ -59,7 +42,7 @@ public partial class Player : CharacterBody2D
 
 	public void SetAdditionalMovement(Vector2 additionalMovement)
 	{
-		moveComponent.SetAdditionalMovement(additionalMovement);
+		Position += additionalMovement;
 	}
 
 	private void Rotate()
@@ -69,11 +52,3 @@ public partial class Player : CharacterBody2D
 	}
 
 }
-
-// public enum State
-// {
-// 	FlyingUp,
-// 	Diving,
-// 	Gliding,
-// 	Dead
-// }

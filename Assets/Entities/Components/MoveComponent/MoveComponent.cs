@@ -4,30 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 public partial class MoveComponent : Node2D
 {
-	private const float HorizontalMoveSpeed = 200f;
-	private const float HorizontalBrakeSpeed = 500f;
-	private const float HorizontalSlowDownFactor = 0.9f;
-	private const float HorizontalMoveSpeedLimit = 100f;
 
-	private const float FlyUpGravity = 330f;
-	private const float FlyUpSpeedLimit = -150f;
-
-	private const float DiveGravity = 500f;
-	private const float DiveSpeedLimit = 250f;
-
-	private const float FallGravity = 200f;
-	private const float FallSpeedLimit = 120f;
-	private const float FallLimiter = -50f;
-
-	private const float BrakingPower = 2f;
-
-	Vector2 additionalMovement;
-	CharacterBody2D parent;
-
-	public override void _Ready()
-	{
-		parent = Owner as CharacterBody2D;
-	}
 
 
 	// public void HandleMovement()
@@ -135,17 +112,6 @@ public partial class MoveComponent : Node2D
 
 	// 	return velocity;
 	// }
-
-	public void SetAdditionalMovement(Vector2 passedAdditionalMovement)
-	{
-		additionalMovement = passedAdditionalMovement;
-	}
-
-	public void ApplyAdditionalMovement(Player parent)
-	{
-		parent.Position += additionalMovement;
-	}
-
 
 
 

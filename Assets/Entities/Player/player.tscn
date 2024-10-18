@@ -1,9 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc7wx8ibnmnrq"]
+[gd_scene load_steps=22 format=3 uid="uid://cc7wx8ibnmnrq"]
 
 [ext_resource type="Texture2D" uid="uid://o87qxqac6qhi" path="res://Assets/Entities/Player/Bird Spritesheet.png" id="1_1inpw"]
 [ext_resource type="Script" path="res://Assets/Entities/Player/Player.cs" id="1_iysxu"]
 [ext_resource type="Script" path="res://Assets/Entities/Player/PlayerSprite.cs" id="3_c0eca"]
 [ext_resource type="PackedScene" uid="uid://dn0ypxbiwjl0l" path="res://Assets/Entities/Components/MoveComponent/moveComponent.tscn" id="4_yero2"]
+[ext_resource type="Script" path="res://Assets/Entities/States/StateMachine.cs" id="5_w48sn"]
+[ext_resource type="Script" path="res://Assets/Entities/Player/PlayerStates/FlyingUp.cs" id="6_2nrvs"]
+[ext_resource type="Script" path="res://Assets/Entities/Player/PlayerStates/Gliding.cs" id="6_o5jwh"]
+[ext_resource type="Script" path="res://Assets/Entities/Player/PlayerStates/Diving.cs" id="7_sclgs"]
+[ext_resource type="Script" path="res://Assets/Entities/Player/PlayerStates/Dead.cs" id="9_f8hkl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjpkt"]
 radius = 1.0
@@ -97,10 +102,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "animatedSprite2D")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "animatedSprite2D", "stateMachine")]
 script = ExtResource("1_iysxu")
 moveComponent = NodePath("MoveComponent")
 animatedSprite2D = NodePath("AnimatedSprite2D")
+stateMachine = NodePath("StateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -115,12 +121,18 @@ script = ExtResource("3_c0eca")
 
 [node name="MoveComponent" parent="." instance=ExtResource("4_yero2")]
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("5_w48sn")
+state = NodePath("Gliding")
 
 [node name="FlyingUp" type="Node" parent="StateMachine"]
+script = ExtResource("6_2nrvs")
 
 [node name="Diving" type="Node" parent="StateMachine"]
+script = ExtResource("7_sclgs")
 
 [node name="Gliding" type="Node" parent="StateMachine"]
+script = ExtResource("6_o5jwh")
 
 [node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("9_f8hkl")
